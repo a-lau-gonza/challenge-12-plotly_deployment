@@ -69,10 +69,8 @@ var meta_number = meta_array.filter(meta_obj => meta_obj.id == sample);
 
 var meta_result = meta_number[0];
 
-var meta_frequency = parseFloat(meta_result.wfreq);
-
     //  5. Create a variable that holds the first sample in the array.
-    var sample_result = sample_number[0];
+    var sample_result = bbsamples_number[0];
     
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = sample_result.otu_ids;
@@ -128,8 +126,9 @@ var bubbleLayout = {
 // 3. Use Plotly to plot the data with the layout.
 Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
-  });
-}
+
+// 4. Create the trace for the gauge chart.
+var meta_frequency = parseFloat(meta_result.wfreq);
 
 var gaugeData = [{
   value: meta_frequency,
@@ -149,12 +148,17 @@ var gaugeData = [{
   }
 }];
 
+// 5. Create the layout for the gauge chart.
 var gaugeLayout = {
   title: {
     text: "<b>Belly Button Washing Frequency</b>"
   }
 };
 
+// 6. Use Plotly to plot the gauge data and layout.
 Plotly.newPlot(gauge, gaugeData, gaugeLayout);
+
+});
+}
 
 init();
